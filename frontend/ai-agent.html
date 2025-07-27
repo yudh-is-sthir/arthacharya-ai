@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arthacharya - AI Financial Guru</title>
+    <link rel="stylesheet" href="ai-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="app-container">
+        
+        <!-- Header Section (Dark) -->
+        <div class="header-section">
+            <div class="header-top">
+                <div class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="header-title">
+                    <h2>Arthacharya AI</h2>
+                    <span class="subtitle">Your Financial Guru</span>
+                </div>
+                <div class="notification-bell" onclick="toggleNotifications()">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge">1</span>
+                </div>
+            </div>
+            
+            <!-- AI Status Display -->
+            <div class="ai-status-section">
+                <div class="ai-avatar">
+                    <div class="avatar-circle">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="status-indicator active"></div>
+                </div>
+                <div class="ai-info">
+                    <h3>AI Agent Active</h3>
+                    <p>Last analysis: <span id="lastAnalysisTime">2 minutes ago</span></p>
+                    <div class="confidence-display">
+                        <span class="confidence-label">Confidence:</span>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confidenceFill" style="width: 60%"></div>
+                        </div>
+                        <span class="confidence-value" id="confidenceValue">6/10</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-section">
+            
+            <!-- Quick Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card primary">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="coverageMonths">4.00</div>
+                        <div class="stat-label">Months Coverage</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="progressPercent">58.8%</div>
+                        <div class="stat-label">Target Progress</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="urgencyLevel">Medium</div>
+                        <div class="stat-label">Urgency Level</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Analysis Card -->
+            <div class="analysis-card">
+                <div class="card-header">
+                    <div class="header-left">
+                        <h3>🧠 AI Analysis</h3>
+                        <span class="analysis-timestamp" id="analysisTimestamp">Live Analysis</span>
+                    </div>
+                    <div class="refresh-btn" onclick="refreshAnalysis()">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                </div>
+                
+                <div class="analysis-content">
+                    <div class="thinking-process">
+                        <div class="thinking-step active">
+                            <div class="step-indicator">1</div>
+                            <div class="step-content">
+                                <h4>Data Analysis</h4>
+                                <p>Analyzing your financial patterns and emergency fund status...</p>
+                                <div class="step-status">✅ Complete</div>
+                            </div>
+                        </div>
+                        
+                        <div class="thinking-step active">
+                            <div class="step-indicator">2</div>
+                            <div class="step-content">
+                                <h4>Risk Assessment</h4>
+                                <p>Evaluating financial risks and coverage adequacy...</p>
+                                <div class="step-status">✅ Complete</div>
+                            </div>
+                        </div>
+                        
+                        <div class="thinking-step processing">
+                            <div class="step-indicator">3</div>
+                            <div class="step-content">
+                                <h4>Strategy Optimization</h4>
+                                <p>Calculating optimal fund allocation strategy...</p>
+                                <div class="step-status">🔄 Processing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Recommendation Card -->
+            <div class="recommendation-card">
+                <div class="card-header">
+                    <h3>💡 AI Recommendation</h3>
+                    <div class="urgency-badge medium" id="urgencyBadge">Medium Priority</div>
+                </div>
+                
+                <div class="recommendation-content">
+                    <div class="recommendation-text" id="recommendationText">
+                        Your emergency fund is currently in good shape, covering over 7 months of expenses. However, there are some inconsistencies in your financial data that need to be addressed.
+                    </div>
+                    
+                    <div class="action-summary">
+                        <div class="action-item">
+                            <span class="action-label">Primary Action:</span>
+                            <span class="action-value" id="primaryAction">Allocated ₹0 to emergency fund</span>
+                        </div>
+                        <div class="action-item">
+                            <span class="action-label">Next Steps:</span>
+                            <span class="action-value" id="nextSteps">Focus on resolving data inconsistencies</span>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-primary" onclick="acceptRecommendation()">
+                            <i class="fas fa-check"></i>
+                            Accept Recommendation
+                        </button>
+                        <button class="btn-secondary" onclick="customizeStrategy()">
+                            <i class="fas fa-cog"></i>
+                            Customize Strategy
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Visualization -->
+            <div class="progress-card">
+                <div class="card-header">
+                    <h3>📊 Emergency Fund Progress</h3>
+                </div>
+                
+                <div class="progress-content">
+                    <div class="progress-circle">
+                        <svg class="progress-ring" width="120" height="120">
+                            <circle class="progress-ring-bg" cx="60" cy="60" r="54"></circle>
+                            <circle class="progress-ring-fill" cx="60" cy="60" r="54" id="progressRing"></circle>
+                        </svg>
+                        <div class="progress-text">
+                            <div class="progress-percentage" id="progressPercentage">58.8%</div>
+                            <div class="progress-label">of target</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Current Fund:</span>
+                            <span class="detail-value">₹1,95,297</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Target Fund:</span>
+                            <span class="detail-value">₹3,32,000</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Remaining:</span>
+                            <span class="detail-value">₹1,36,703</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Learning Insights -->
+            <div class="insights-card">
+                <div class="card-header">
+                    <h3>🎯 AI Insights</h3>
+                </div>
+                
+                <div class="insights-content">
+                    <div class="insight-item">
+                        <div class="insight-icon">📈</div>
+                        <div class="insight-text">
+                            <h4>Pattern Recognition</h4>
+                            <p>Detected monthly expense pattern variations that need clarification</p>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <div class="insight-icon">🛡️</div>
+                        <div class="insight-text">
+                            <h4>Risk Mitigation</h4>
+                            <p>Current fund provides adequate coverage but requires data verification</p>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <div class="insight-icon">🎯</div>
+                        <div class="insight-text">
+                            <h4>Optimization Opportunity</h4>
+                            <p>Strategy refinement possible once data inconsistencies are resolved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Popup -->
+        <div class="notification-popup" id="notificationPopup">
+            <div class="popup-header">
+                <h3>📢 Notifications</h3>
+                <button class="close-btn" onclick="closeNotifications()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="popup-content">
+                <div class="notification-item" onclick="viewNotificationDetail()">
+                    <div class="notification-icon">🤖</div>
+                    <div class="notification-content">
+                        <div class="notification-title" id="notificationTitle">Emergency Fund Guardian Action Completed</div>
+                        <div class="notification-time">2 minutes ago</div>
+                        <div class="notification-preview" id="notificationPreview">Your emergency fund is currently in good shape...</div>
+                    </div>
+                    <div class="notification-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>US Stocks</span>
+            </div>
+            <div class="nav-item ai-special active">
+                <div class="ai-button">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span>Arthacharya</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-bolt"></i>
+                <span>Insta Cash</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="ai-script.js"></script>
+</body>
+</html>

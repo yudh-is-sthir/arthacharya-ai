@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arthacharya - AI Financial Guru</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Main Container -->
+    <div class="app-container">
+
+        <!-- Header Section (Dark) -->
+        <div class="header-section">
+            <div class="header-top">
+                <div class="user-profile">
+                    <div class="profile-circle">A</div>
+                </div>
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+            </div>
+
+            <!-- Wealth Display -->
+            <div class="wealth-section">
+                <p class="wealth-label">Your wealth</p>
+                <div class="wealth-amount">
+                    <span class="currency-symbol">₹</span>
+                    <span class="amount-value">770</span>
+                    <div class="wealth-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+                <button class="refresh-btn">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Refresh</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-section">
+
+            <!-- Bank Accounts Card -->
+            <div class="account-card">
+                <div class="card-content">
+                    <div class="account-info">
+                        <div class="account-details">
+                            <h3>Bank Accounts</h3>
+                            <div class="account-amount">₹770.13</div>
+                            <button class="view-btn">View <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="bank-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investment Options Grid -->
+            <div class="investment-grid">
+
+                <!-- Mutual Funds -->
+                <div class="investment-card">
+                    <div class="card-header">
+                        <h4>Mutual Funds</h4>
+                        <span class="rupee-symbol">₹₹₹</span>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <button class="add-btn">
+                        <i class="fas fa-plus"></i>
+                        <span>Add</span>
+                    </button>
+                </div>
+
+                <!-- Indian Stocks -->
+                <div class="investment-card">
+                    <div class="card-header">
+                        <h4>Indian Stocks</h4>
+                        <span class="rupee-symbol">₹₹₹</span>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <button class="add-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+                <!-- NPS -->
+                <div class="investment-card">
+                    <div class="card-header">
+                        <h4>NPS</h4>
+                        <span class="rupee-symbol">₹₹₹</span>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <button class="add-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+                <!-- EPF -->
+                <div class="investment-card">
+                    <div class="card-header">
+                        <h4>EPF</h4>
+                        <span class="rupee-symbol">₹₹₹</span>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <button class="add-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="talk-ai-btn">
+                    <i class="fas fa-robot"></i>
+                    <span>Talk to AI</span>
+                </button>
+                <button class="mf-report-btn">
+                    <span>Get MF Report</span>
+                </button>
+            </div>
+
+            <!-- AI Banner (Fi MCP Integration) -->
+            <div class="ai-banner">
+                <div class="banner-content">
+                    <div class="banner-text">
+                        <p class="banner-title">Fi MCP is now live! Talk about your money with your preferred AI
+                            assistant</p>
+                    </div>
+                    <div class="banner-icons">
+                        <i class="fas fa-brain"></i>
+                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Icons Row -->
+            <div class="app-icons-row">
+                <div class="app-icon">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Credit Score</span>
+                </div>
+                <div class="app-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <span>Loan Against MF</span>
+                </div>
+                <div class="app-icon">
+                    <i class="fas fa-calculator"></i>
+                    <span>Calculators</span>
+                </div>
+                <div class="app-icon">
+                    <i class="fas fa-chart-line"></i>
+                    <span>US Stocks</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation with Special AI Button -->
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>US Stocks</span>
+            </div>
+            <!-- Special AI Button in Middle -->
+
+            <div class="nav-item ai-special">
+                <div class="ai-button">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span>Arthacharya</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-bolt"></i>
+                <span>Insta Cash</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

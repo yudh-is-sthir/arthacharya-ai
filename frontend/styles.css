@@ -1,0 +1,513 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.app-container {
+    max-width: 375px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    position: relative;
+    padding-bottom: 80px; /* Space for bottom nav */
+}
+
+/* Header Section */
+.header-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 50px 20px 30px;
+    position: relative;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-circle {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.notification-icon {
+    font-size: 20px;
+    opacity: 0.8;
+}
+
+/* Wealth Section */
+.wealth-section {
+    text-align: center;
+    position: relative;
+}
+
+.wealth-label {
+    color: #00D4AA;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.wealth-amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.currency-symbol {
+    font-size: 28px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.amount-value {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.wealth-icon {
+    margin-left: 10px;
+    color: #00D4AA;
+    font-size: 20px;
+}
+
+.refresh-btn {
+    background: rgba(0, 212, 170, 0.2);
+    border: 1px solid #00D4AA;
+    border-radius: 20px;
+    padding: 8px 16px;
+    color: #00D4AA;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.refresh-btn:hover {
+    background: rgba(0, 212, 170, 0.3);
+}
+
+/* Content Section */
+.content-section {
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    margin-top: 20px;
+    padding: 25px 20px;
+    min-height: calc(100vh - 300px);
+}
+
+/* Bank Account Card */
+.account-card {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid #e9ecef;
+}
+
+.account-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account-details h3 {
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.account-amount {
+    color: #1a1a1a;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.view-btn {
+    background: none;
+    border: none;
+    color: #00D4AA;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.bank-icon {
+    font-size: 32px;
+    color: #00D4AA;
+    opacity: 0.8;
+}
+
+/* Investment Grid */
+.investment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.investment-card {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.card-header h4 {
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.rupee-symbol {
+    color: #ccc;
+    font-size: 12px;
+}
+
+.card-icon {
+    position: absolute;
+    bottom: 40px;
+    right: 16px;
+    font-size: 20px;
+    color: #00D4AA;
+    opacity: 0.6;
+}
+
+.add-btn {
+    background: none;
+    border: 1px solid #e9ecef;
+    border-radius: 20px;
+    padding: 6px 12px;
+    color: #666;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.add-btn:hover {
+    border-color: #00D4AA;
+    color: #00D4AA;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.talk-ai-btn {
+    background: rgba(0, 212, 170, 0.1);
+    border: 1px solid #00D4AA;
+    border-radius: 25px;
+    padding: 12px 20px;
+    color: #00D4AA;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    flex: 1;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.talk-ai-btn:hover {
+    background: rgba(0, 212, 170, 0.2);
+}
+
+.mf-report-btn {
+    background: #00D4AA;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.3s ease;
+}
+
+.mf-report-btn:hover {
+    background: #00C199;
+}
+
+/* AI Banner */
+.ai-banner {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 25px;
+    border: 1px solid #e0f2fe;
+}
+
+.banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner-title {
+    color: #1a1a1a;
+    font-size: 13px;
+    line-height: 1.4;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.banner-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.banner-icons i {
+    font-size: 16px;
+    color: #666;
+}
+
+/* App Icons Row */
+.app-icons-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.app-icon {
+    text-align: center;
+    flex: 1;
+}
+
+.app-icon i {
+    font-size: 24px;
+    color: #666;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.app-icon span {
+    color: #1a1a1a;
+    font-size: 11px;
+    line-height: 1.2;
+    display: block;
+}
+
+/* Bottom Navigation with Special AI Button */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 375px;
+    max-width: 100vw;
+    background: #fff;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 0 20px;
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+    color: #666;
+}
+
+.nav-item span {
+    font-size: 11px;
+    color: #666;
+    font-weight: 500;
+}
+
+.nav-item.active i,
+.nav-item.active span {
+    color: #00D4AA;
+}
+
+/* Special AI Button */
+.nav-item.ai-special {
+    position: relative;
+    transform: translateY(-10px);
+}
+
+.ai-button {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #00D4AA 0%, #00C199 100%);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ai-button i {
+    color: #fff !important;
+    font-size: 24px;
+    margin: 0;
+}
+
+.ai-special span {
+    color: #00D4AA !important;
+    font-weight: 600;
+    font-size: 10px;
+}
+
+.ai-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 212, 170, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 320px) {
+    .app-container {
+        max-width: 100%;
+    }
+    
+    .investment-grid {
+        gap: 10px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 375px) {
+    .app-container {
+        max-width: 375px;
+    }
+}
+
+/* Loading States and Animations */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Smooth Transitions */
+* {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Remove any link styling from navigation */
+.bottom-nav a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Enhanced AI button styling */
+.nav-item.ai-special {
+    position: relative;
+    transform: translateY(-10px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-item.ai-special:hover {
+    transform: translateY(-12px) scale(1.05);
+}
+
+.nav-item.ai-special:active {
+    transform: translateY(-8px) scale(0.98);
+}
+
+.ai-button {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #00D4AA 0%, #00C199 100%);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.ai-button:hover {
+    box-shadow: 0 6px 16px rgba(0, 212, 170, 0.4);
+    transform: scale(1.1);
+}
+
+.ai-button i {
+    color: #fff !important;
+    font-size: 24px;
+    margin: 0;
+}
+
+.ai-special span {
+    color: #00D4AA !important;
+    font-weight: 600;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+/* Ensure no underlines or link styling */
+.bottom-nav * {
+    text-decoration: none !important;
+}

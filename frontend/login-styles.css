@@ -1,0 +1,276 @@
+/* Login Page Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.app-logo {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #00D4AA 0%, #00C199 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: white;
+    box-shadow: 0 8px 24px rgba(0, 212, 170, 0.3);
+}
+
+.login-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+}
+
+.tagline {
+    color: #00D4AA;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.login-form-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-form h2 {
+    color: #1a1a1a;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.login-subtitle {
+    color: #666;
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 14px;
+}
+
+.form-step {
+    transition: all 0.3s ease;
+}
+
+.form-step.hidden {
+    display: none;
+}
+
+.input-group {
+    margin-bottom: 24px;
+}
+
+.input-group label {
+    display: block;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.phone-input-container {
+    display: flex;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.phone-input-container:focus-within {
+    border-color: #00D4AA;
+}
+
+.country-code {
+    background: #f8f9fa;
+    padding: 16px;
+    color: #333;
+    font-weight: 600;
+    border-right: 1px solid #e9ecef;
+}
+
+#phoneNumber, #otpInput {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+}
+
+#otpInput {
+    width: 100%;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    text-align: center;
+    letter-spacing: 4px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+#otpInput:focus {
+    border-color: #00D4AA;
+}
+
+.otp-info {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.otp-info span {
+    color: #00D4AA;
+    font-weight: 600;
+}
+
+.login-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #00D4AA 0%, #00C199 100%);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    margin-bottom: 16px;
+}
+
+.login-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 212, 170, 0.3);
+}
+
+.login-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.resend-btn {
+    width: 100%;
+    background: none;
+    color: #00D4AA;
+    border: 2px solid #00D4AA;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.resend-btn:hover {
+    background: rgba(0, 212, 170, 0.1);
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.loading-overlay.hidden {
+    display: none;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e9ecef;
+    border-top: 4px solid #00D4AA;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+#loadingText {
+    color: #333;
+    font-weight: 500;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.login-footer p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 16px;
+    }
+    
+    .login-form-container {
+        padding: 32px 24px;
+    }
+    
+    .login-header h1 {
+        font-size: 28px;
+    }
+    
+    .app-logo {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+    }
+}
