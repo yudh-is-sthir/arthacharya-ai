@@ -1,0 +1,415 @@
+{
+  "name": "workflow-2-ai-decision-engine",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "247b7dea-742f-48f3-ab0c-e110cc9164c9",
+      "name": "Daily Guardian Trigger",
+      "notes": "Awakens the Emergency Fund Guardian daily"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "41d4ae35-8a38-40a1-9f7f-1a4e2d2f3779",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        200
+      ],
+      "id": "99a47a27-82f9-4140-b503-0927c81a8d98",
+      "name": "On-Demand Trigger",
+      "webhookId": "41d4ae35-8a38-40a1-9f7f-1a4e2d2f3779"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        220,
+        200
+      ],
+      "id": "36cd7504-0314-4ad3-846d-9df40344c240",
+      "name": "Trigger Combiner"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:5678/webhook/9906ad47-aa3c-4f09-8094-27f6fc0e57e9",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        200
+      ],
+      "id": "d74fd46e-db5e-4fcf-ae7d-a6e9419ec0f2",
+      "name": "Load Financial Context"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=CURRENT FINANCIAL CONTEXT:\n{{ JSON.stringify($json.financial_data, null, 2) }}\n\nYour task is to:\n1. ANALYZE the current financial situation deeply\n2. REASON through the emergency fund strategy like a human advisor would  \n3. Make AUTONOMOUS DECISIONS about fund allocation and targets\n4. Provide clear EXPLANATIONS for every decision\n\nPERFORM THESE ANALYSES:\n\n🔍 SITUATION ASSESSMENT:\n- What is the user's current emergency fund health?\n- What risks do you identify in their financial profile?\n- How adequate is their current emergency fund coverage?\n\n🧠 STRATEGIC REASONING:\n- Given their expense trends, income stability, and risk factors, what should be the optimal emergency fund target?\n- Should the target be adjusted from standard 6-month coverage? Why?\n- What surplus allocation strategy makes the most sense?\n\n⚡ AUTONOMOUS DECISIONS:\n- What specific actions should be taken RIGHT NOW?\n- How much money should be moved to emergency fund?\n- What is your reasoning for these specific amounts?\n- Any protective measures needed?\n\n📊 FORWARD PLANNING:\n- What should happen next month?\n- What scenarios should we prepare for?\n- Any adjustments to monitoring frequency?\n\nProvide your response in this EXACT JSON format:\n\n{\n  \"agent_reasoning\": {\n    \"situation_analysis\": \"[Your detailed analysis of current situation]\",\n    \"risk_assessment\": \"[Specific risks identified and their implications]\", \n    \"coverage_evaluation\": \"[Assessment of current vs needed coverage]\"\n  },\n  \"strategic_decisions\": {\n    \"target_adjustment\": {\n      \"new_target_amount\": [number],\n      \"new_target_months\": [number],\n      \"adjustment_reason\": \"[Why you're changing from standard 6 months]\"\n    },\n    \"allocation_strategy\": {\n      \"immediate_allocation\": [number],\n      \"allocation_source\": \"[Where money comes from]\",\n      \"allocation_reasoning\": \"[Why this specific amount and timing]\"\n    }\n  },\n  \"autonomous_actions\": {\n    \"primary_action\": {\n      \"action_type\": \"[allocate_funds/adjust_target/maintain_status/urgent_build]\",\n      \"amount\": [number],\n      \"reasoning\": \"[Detailed explanation of why this action now]\",\n      \"expected_impact\": \"[What this achieves]\"\n    },\n    \"protective_measures\": [\n      \"[Any protective actions needed]\"\n    ],\n    \"monitoring_adjustments\": \"[Changes to monitoring frequency or focus]\"\n  },\n  \"forward_planning\": {\n    \"next_month_strategy\": \"[What should happen next month]\",\n    \"scenario_preparations\": [\n      \"[Scenarios to prepare for]\"\n    ],\n    \"success_metrics\": \"[How to measure if strategy is working]\"\n  },\n  \"explanation_for_user\": \"[Clear, human-friendly explanation of decisions made and why]\",  \n  \"confidence_level\": [1-10],\n  \"requires_user_attention\": [true/false],\n  \"urgency_level\": \"[low/medium/high]\"\n}\n",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are an intelligent Emergency Fund Guardian Agent with the expertise of a senior financial advisor. Your mission is to analyze financial data and make autonomous decisions about emergency fund management."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        660,
+        200
+      ],
+      "id": "c60b4a65-3ef9-4692-ab0a-441aa1a881c8",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-exp",
+        "options": {
+          "maxOutputTokens": 2048,
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        748,
+        420
+      ],
+      "id": "84f96dbc-8085-4f47-91be-526b55c2242a",
+      "name": "Emergency Fund Decision Engine",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "kEzsXh2UhoI1hydJ",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Using Code node instead of Function node\nfor (const item of $input.all()) {\n  const rawResponse = item.json.text;\n  \n  if (!rawResponse) {\n    item.json = {\n      agent_decision: null,\n      decision_quality: \"failed\",\n      error: \"No text property found\",\n      ready_for_execution: false\n    };\n    continue;\n  }\n  \n  try {\n    // Extract JSON content\n    const firstBrace = rawResponse.indexOf('{');\n    const lastBrace = rawResponse.lastIndexOf('}');\n    \n    if (firstBrace === -1 || lastBrace === -1) {\n      throw new Error(\"No JSON braces found\");\n    }\n    \n    const cleanResponse = rawResponse.substring(firstBrace, lastBrace + 1);\n    const decisionData = JSON.parse(cleanResponse);\n    \n    // Add metadata\n    decisionData.decision_timestamp = new Date().toISOString();\n    decisionData.agent_version = \"Emergency_Fund_Guardian_v1.0\";\n    decisionData.processing_status = \"success\";\n    \n    item.json = {\n      agent_decision: decisionData,\n      raw_llm_response: rawResponse,\n      decision_quality: \"validated\",\n      ready_for_execution: true\n    };\n    \n  } catch (error) {\n    item.json = {\n      agent_decision: null,\n      raw_llm_response: rawResponse,\n      decision_quality: \"failed\",\n      error: error.message,\n      ready_for_execution: false\n    };\n  }\n}\n\nreturn $input.all();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1256,
+        200
+      ],
+      "id": "1c499ad3-c3f9-40ae-affc-ccdcd122a12c",
+      "name": "Parse LLM Decision"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Debug-heavy version to find the exact issue\nlet rawResponse;\n\ntry {\n  console.log(\"Full input data:\", JSON.stringify($json, null, 2));\n  \n  rawResponse = $json.text;\n  console.log(\"Raw response type:\", typeof rawResponse);\n  console.log(\"Raw response length:\", rawResponse ? rawResponse.length : \"null/undefined\");\n  console.log(\"First 100 chars:\", rawResponse ? rawResponse.substring(0, 100) : \"No content\");\n  \n  if (!rawResponse) {\n    throw new Error(\"No text property found in Gemini response\");\n  }\n  \n  // Let's try multiple cleaning approaches and see which works\n  \n  // Approach 1: Brace extraction\n  const firstBrace = rawResponse.indexOf('{');\n  const lastBrace = rawResponse.lastIndexOf('}');\n  console.log(\"First brace at:\", firstBrace);\n  console.log(\"Last brace at:\", lastBrace);\n  \n  if (firstBrace === -1 || lastBrace === -1) {\n    throw new Error(\"No JSON braces found\");\n  }\n  \n  const cleanResponse1 = rawResponse.substring(firstBrace, lastBrace + 1);\n  console.log(\"Cleaned response length:\", cleanResponse1.length);\n  console.log(\"Cleaned response starts with:\", cleanResponse1.substring(0, 50));\n  \n  // Try to parse\n  const decisionData = JSON.parse(cleanResponse1);\n  \n  // Success!\n  decisionData.decision_timestamp = new Date().toISOString();\n  decisionData.agent_version = \"Emergency_Fund_Guardian_v1.0\";\n  decisionData.processing_status = \"success\";\n  \n  return {\n    json: {\n      agent_decision: decisionData,\n      raw_llm_response: rawResponse,\n      decision_quality: \"validated\",\n      ready_for_execution: true,\n      debug_success: \"Brace extraction worked\"\n    }\n  };\n  \n} catch (error) {\n  return {\n    json: {\n      agent_decision: null,\n      raw_llm_response: rawResponse || \"No response available\",\n      decision_quality: \"failed\",\n      error: error.message,\n      ready_for_execution: false,\n      debug_error_stack: error.stack,\n      debug_raw_type: typeof rawResponse,\n      debug_raw_length: rawResponse ? rawResponse.length : \"undefined\"\n    }\n  };\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1036,
+        200
+      ],
+      "id": "bc6f0d4a-6e69-403e-95e0-e8a2281fe123",
+      "name": "Debug Heavy Node",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Action Executor - Turn decisions into simulated actions\nconst decision = $json.agent_decision;\n\nconst executionResult = {\n  execution_status: \"completed\",\n  execution_timestamp: new Date().toISOString(),\n  \n  // Simulate the fund allocation\n  fund_movement: {\n    action_type: \"emergency_fund_allocation\", \n    amount: decision.autonomous_actions.primary_action.amount,\n    from_account: \"Monthly_Surplus\",\n    to_account: \"Emergency_Fund\",\n    new_balance: 180000 + decision.autonomous_actions.primary_action.amount,\n    new_coverage_months: ((180000 + decision.autonomous_actions.primary_action.amount) / 45000).toFixed(2)\n  },\n  \n  // Actions taken\n  actions_completed: [\n    `Allocated ₹${decision.autonomous_actions.primary_action.amount} to emergency fund`,\n    \"Updated monitoring frequency to weekly\",\n    \"Scheduled protective measures\"\n  ],\n  \n  // For Workflow 3 integration\n  alerts_for_workflow3: {\n    fund_status_change: {\n      previous_balance: 180000,\n      new_balance: 180000 + decision.autonomous_actions.primary_action.amount,\n      change_amount: decision.autonomous_actions.primary_action.amount,\n      reason: \"Autonomous allocation by Emergency Fund Guardian\"\n    },\n    monitoring_frequency_change: {\n      previous: \"daily\",\n      new: \"weekly\", \n      reason: \"Risk-based adjustment\"\n    },\n    requires_protection: decision.requires_user_attention\n  }\n};\n\nreturn { json: executionResult };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1476,
+        200
+      ],
+      "id": "f3cf7444-bf9b-479e-8fd4-9c27db1fc579",
+      "name": "Action Executor"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Generate user-friendly notifications\nconst execution = $json;\nconst decision = $('Parse LLM Decision').first().json.agent_decision;\n\nconst notification = {\n  notification_timestamp: new Date().toISOString(),\n  \n  // Main user message\n  user_notification: {\n    title: \"🤖 Emergency Fund Guardian Action Completed\",\n    message: decision.explanation_for_user,\n    urgency: decision.urgency_level,\n    confidence: `${decision.confidence_level}/10`\n  },\n  \n  // Action summary  \n  action_summary: {\n    primary_action: `Allocated ₹${execution.fund_movement.amount} to emergency fund`,\n    new_coverage: `${execution.fund_movement.new_coverage_months} months`,\n    progress: `${((execution.fund_movement.new_balance / 306000) * 100).toFixed(1)}% toward target`,\n    next_steps: decision.forward_planning.next_month_strategy\n  },\n  \n  // Ready for integration\n  workflow_complete: true,\n  ready_for_workflow3_integration: true\n};\n\nreturn { json: notification };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1696,
+        200
+      ],
+      "id": "26d9b753-036c-4130-903c-123a683dc782",
+      "name": "Notification Engine"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2576,
+        200
+      ],
+      "id": "a326725c-ffa7-4e58-989a-1aad982afef2",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Prepare data for Firebase storage\nconst analysisData = $('Parse LLM Decision').first().json.agent_decision;\nconst contextData = $('Load Financial Context').first().json.financial_data;\n\n// Convert to Firebase Firestore format\nconst firestoreData = {\n    fields: {\n        analysis_id: {\n            stringValue: `analysis_${new Date().toISOString().replace(/[:.]/g, '_')}`\n        },\n        timestamp: {\n            timestampValue: new Date().toISOString()\n        },\n        trigger_type: {\n            stringValue: 'scheduler'\n        },\n        ai_decision: {\n            mapValue: {\n                fields: {\n                    confidence_level: {\n                        doubleValue: analysisData.confidence_level || 6\n                    },\n                    urgency_level: {\n                        stringValue: analysisData.urgency_level || 'medium'\n                    },\n                    explanation_for_user: {\n                        stringValue: analysisData.explanation_for_user || 'Analysis complete'\n                    },\n                    primary_action: {\n                        stringValue: analysisData.autonomous_actions?.primary_action?.reasoning || 'No action taken'\n                    }\n                }\n            }\n        },\n        financial_context: {\n            mapValue: {\n                fields: {\n                    emergency_fund_amount: {\n                        doubleValue: contextData.emergency_fund?.current_amount || 0\n                    },\n                    coverage_months: {\n                        doubleValue: contextData.emergency_fund?.current_coverage_months || 0\n                    },\n                    monthly_expenses: {\n                        doubleValue: contextData.monthly_expenses?.average || 0\n                    }\n                }\n            }\n        },\n        status: {\n            stringValue: 'completed'\n        },\n        displayed_to_user: {\n            booleanValue: false\n        }\n    }\n};\n\nreturn { json: firestoreData };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1916,
+        200
+      ],
+      "id": "c31bbc1c-dc45-4733-929b-4d8a95fce458",
+      "name": "Prepare firebase data"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        400
+      ],
+      "id": "6935a2e0-8dc0-4624-856e-003b8e73de14",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://firestore.googleapis.com/v1/projects/arthacharya-a1303/databases/(default)/documents/ai_analysis",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2136,
+        200
+      ],
+      "id": "96db22ae-f728-4756-91c3-97898596adab",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Process Firebase response\nconst firebaseResponse = $json;\n\nif (firebaseResponse.name) {\n    // Success - document was created\n    const documentId = firebaseResponse.name.split('/').pop();\n    \n    return {\n        json: {\n            firebase_status: 'success',\n            document_id: documentId,\n            stored_at: firebaseResponse.createTime,\n            message: 'AI analysis stored successfully in Firebase'\n        }\n    };\n} else {\n    // Error occurred\n    return {\n        json: {\n            firebase_status: 'error',\n            error: firebaseResponse.error || 'Unknown error',\n            message: 'Failed to store analysis in Firebase'\n        }\n    };\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2360,
+        200
+      ],
+      "id": "48590836-e34e-4d99-9038-b41241a3e9d1",
+      "name": "Code"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On-Demand Trigger": {
+      "main": [
+        [
+          {
+            "node": "Trigger Combiner",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Daily Guardian Trigger": {
+      "main": [
+        [
+          {
+            "node": "Trigger Combiner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger Combiner": {
+      "main": [
+        [
+          {
+            "node": "Load Financial Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Emergency Fund Decision Engine": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Debug Heavy Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Debug Heavy Node": {
+      "main": [
+        [
+          {
+            "node": "Parse LLM Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse LLM Decision": {
+      "main": [
+        [
+          {
+            "node": "Action Executor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Executor": {
+      "main": [
+        [
+          {
+            "node": "Notification Engine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Financial Context": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notification Engine": {
+      "main": [
+        [
+          {
+            "node": "Prepare firebase data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare firebase data": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Trigger Combiner",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "25b7484e-492c-4ff7-830a-94dbe894124b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "56c17dc646cabc4aaa693008849e50eee504ef33ebd3545da9adc2ab175d6822"
+  },
+  "id": "PvcfPJiDXaBs4qEL",
+  "tags": []
+}

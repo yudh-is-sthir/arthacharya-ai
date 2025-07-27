@@ -1,0 +1,553 @@
+{
+  "name": "workflow-1-financial-analysis",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://35.200.206.57:8080/mcp/stream",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Content-Type\": \"application/json\",\n  \"Mcp-Session-Id\": \"mcp-session-594e48ea-fea1-40ef-8c52-7552dd9272af\"\n}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"fetch_net_worth\",\n    \"arguments\": {}\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        -207
+      ],
+      "id": "080d0cf8-d86b-4dfe-9bf0-9bbc90d26edb",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://35.200.206.57:8080/mcp/stream",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Content-Type\": \"application/json\",\n  \"Mcp-Session-Id\": \"mcp-session-594e48ea-fea1-40ef-8c52-7552dd9272af\"\n}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 2,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"fetch_bank_transactions\",\n    \"arguments\": {}\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        -7
+      ],
+      "id": "1ebbf05a-31d8-4938-8426-9d05fe224195",
+      "name": "Fetch bank-transactions"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://35.200.206.57:8080/mcp/stream",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Content-Type\": \"application/json\",\n  \"Mcp-Session-Id\": \"mcp-session-594e48ea-fea1-40ef-8c52-7552dd9272af\"\n}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 1,\n    \"method\": \"tools/call\",\n    \"params\": {\n        \"name\": \"fetch_stock_transactions\",\n        \"arguments\": {}\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        193
+      ],
+      "id": "845ffc3f-dd7b-4973-aaee-69f77eece4ac",
+      "name": "Fetch_stock_transactions"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "9906ad47-aa3c-4f09-8094-27f6fc0e57e9",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        20,
+        293
+      ],
+      "id": "1726f89e-08b3-449f-981f-374a4cb94501",
+      "name": "Webhook",
+      "webhookId": "9906ad47-aa3c-4f09-8094-27f6fc0e57e9"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://35.200.206.57:8080/mcp/stream",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Content-Type\": \"application/json\",\n  \"Mcp-Session-Id\": \"mcp-session-594e48ea-fea1-40ef-8c52-7552dd9272af\"\n}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 1,\n    \"method\": \"tools/call\",\n    \"params\": {\n        \"name\": \"fetch_mf_transactions\",\n        \"arguments\": {}\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        393
+      ],
+      "id": "9bbad7e3-ad95-4ab9-939c-329c845accca",
+      "name": "Fetch_mf_transactions"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://35.200.206.57:8080/mcp/stream",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Content-Type\": \"application/json\",\n  \"Mcp-Session-Id\": \"mcp-session-594e48ea-fea1-40ef-8c52-7552dd9272af\"\n}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 1,\n    \"method\": \"tools/call\",\n    \"params\": {\n        \"name\": \"fetch_credit_report\",\n        \"arguments\": {}\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        593
+      ],
+      "id": "e776ee8d-763b-4ce6-95f5-12d43adfc3aa",
+      "name": "Fetch_credit_report"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://35.200.206.57:8080/mcp/stream",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Content-Type\": \"application/json\",\n  \"Mcp-Session-Id\": \"mcp-session-594e48ea-fea1-40ef-8c52-7552dd9272af\"\n}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 1,\n    \"method\": \"tools/call\",\n    \"params\": {\n        \"name\": \"fetch_epf_details\",\n        \"arguments\": {}\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        793
+      ],
+      "id": "8585241b-c6e4-481b-91fb-15cb48588f79",
+      "name": "Fetch_epf_details"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract and parse the nested JSON\nconst rawResponse = $input.first().json;\nconst textContent = rawResponse.result.content[0].text;\nconst parsedData = JSON.parse(textContent);\n\n// Extract key financial data for emergency fund calculation\nconst netWorthData = parsedData.netWorthResponse || {};\n\n// Get asset and liability arrays safely\nconst assetValues = netWorthData.assetValues || [];\nconst liabilityValues = netWorthData.liabilityValues || [];\n\n// Get liquid assets (savings accounts primarily)\nconst savingsAccount = assetValues.find(\n  asset => asset.netWorthAttribute === \"ASSET_TYPE_SAVINGS_ACCOUNTS\"\n);\n\n// Calculate total liquid assets\nconst liquidAssets = parseInt(savingsAccount?.value?.units || \"0\");\n\n// Calculate total Assets\nconst totalAssets = assetValues.reduce((sum, assets) => {\n  return sum + parseInt(assets.value.units);\n}, 0);\n\n// Calculate total liabilities\nconst totalLiabilities = liabilityValues.reduce((sum, liability) => {\n  return sum + parseInt(liability.value.units);\n}, 0);\n\n// Clean output structure\nreturn {\n  json: {\n    liquidAssets: liquidAssets,\n    totalAssets: totalAssets,\n    totalLiabilities: totalLiabilities,\n    totalNetWorth: parseInt(netWorthData.totalNetWorthValue?.units || \"0\"),\n    rawAssets: assetValues,\n    rawLiabilities: liabilityValues\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        -207
+      ],
+      "id": "908f19f7-1e57-42bf-9ad3-8649edc3beff",
+      "name": "Cleaned net worth"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Clean bank transactions - parse JSON-RPC response\nconst rawResponse = $input.all()[0].json;\n\n// Extract the actual transaction data from JSON-RPC wrapper\nconst transactionText = rawResponse.result?.content?.[0]?.text;\nconst rawData = transactionText ? JSON.parse(transactionText) : {};\nconsole.log(JSON.stringify(rawData.bankTransactions, null, 2));\n\n\n\n// Safe access to bankTransactions\nconst bankTransactions = rawData.bankTransactions || [];\n\nlet allTransactions = [];\n\nbankTransactions.forEach(account => {\n  if (Array.isArray(account.txns)) {\n    account.txns.forEach(txn => {\n      allTransactions.push({\n        amount: parseFloat(txn[0]),\n        narration: txn[1],\n        date: txn[2],\n        type: txn[3], // 1=CREDIT, 2=DEBIT\n        mode: txn[4],\n        balance: parseFloat(txn[5])\n      });\n    });\n  }\n});\n\n// Basic categorization\nconst debitTransactions = allTransactions.filter(txn => txn.type === 2);\nconst creditTransactions = allTransactions.filter(txn => txn.type === 1);\n\n// Simple totals and averages (avoid division by 0)\nconst totalDebits = debitTransactions.reduce((sum, txn) => sum + txn.amount, 0);\nconst totalCredits = creditTransactions.reduce((sum, txn) => sum + txn.amount, 0);\n\nreturn [{\n  json: {\n    transactionPeriod: \"2 months\",\n    totalTransactions: allTransactions.length,\n    debitTransactions: debitTransactions,\n    creditTransactions: creditTransactions,\n    summary: {\n      totalDebits: totalDebits,\n      totalCredits: totalCredits,\n      monthlyAverageDebits: totalDebits / 2,\n      monthlyAverageCredits: totalCredits / 2\n    }\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        -7
+      ],
+      "id": "35544be1-28b4-4b81-bdec-b152f682b42f",
+      "name": "Cleaned bank transaction"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract and parse the raw JSON-RPC payload\nconst raw = $input.first().json;\nconst text = raw.result?.content?.[0]?.text || '{}';\nlet parsed;\n\ntry {\n  parsed = JSON.parse(text);\n} catch (e) {\n  throw new Error(\"Invalid JSON in stock transaction text.\");\n}\n\nconst txns = parsed.stockTransactions || [];\n\nconst TRANSACTION_TYPES = {\n  1: \"BUY\",\n  2: \"SELL\",\n  3: \"BONUS\",\n  4: \"SPLIT\"\n};\n\nlet cleaned = [];\n\ntxns.forEach(stock => {\n  const isin = stock.isin;\n  const transactions = stock.txns || [];\n\n  transactions.forEach(txn => {\n    cleaned.push({\n      json: {\n        isin,\n        type: TRANSACTION_TYPES[txn[0]] || \"UNKNOWN\",\n        date: txn[1],\n        quantity: txn[2],\n        nav: txn[3] !== undefined ? parseFloat(txn[3]) : null\n      }\n    });\n  });\n});\n\nreturn cleaned;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        193
+      ],
+      "id": "cf60b31a-9d41-4b8b-9545-c8cb594c570c",
+      "name": "Cleaned Stock Transaction"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Get the raw wrapped response\nconst rawText = $json.result?.content?.[0]?.text;\n\nif (!rawText) {\n  throw new Error(\"No valid 'text' content found\");\n}\n\n// 2. Parse the JSON string inside 'text'\nlet parsed;\ntry {\n  parsed = JSON.parse(rawText);\n} catch (err) {\n  throw new Error(\"Failed to parse nested JSON inside text\");\n}\n\n// 3. Extract transactions\nconst mfTransactions = parsed.mfTransactions || [];\n\n// 4. Flatten the txns if needed or return whole object\nreturn mfTransactions.map(fund => {\n  return {\n    json: {\n      isin: fund.isin,\n      schemeName: fund.schemeName,\n      folioId: fund.folioId,\n      transactions: fund.txns\n    }\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        393
+      ],
+      "id": "75aa972e-08ec-45c4-adc9-7ebc13009485",
+      "name": "Cleaned MF Transaction"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Step 1: Extract the raw JSON string\nconst rawText = $input.first().json.result?.content?.[0]?.text || '{}';\n\nlet parsedData;\ntry {\n  // Step 2: Parse the string into JSON object\n  parsedData = JSON.parse(rawText);\n} catch (error) {\n  throw new Error('Error parsing JSON from raw text: ' + error.message);\n}\n\n// Step 3: Extract and clean creditReports array\nconst creditReports = parsedData.creditReports || [];\n\n// For example, flatten creditAccountDetails into a simpler list of accounts\nconst cleanedAccounts = [];\n\ncreditReports.forEach(report => {\n  const creditAccountDetails = report.creditReportData?.creditAccount?.creditAccountDetails || [];\n  creditAccountDetails.forEach(account => {\n    cleanedAccounts.push({\n      json: {\n        subscriberName: account.subscriberName,\n        portfolioType: account.portfolioType,\n        accountType: account.accountType,\n        openDate: account.openDate,\n        highestCreditOrOriginalLoanAmount: account.highestCreditOrOriginalLoanAmount,\n        accountStatus: account.accountStatus,\n        paymentRating: account.paymentRating,\n        currentBalance: account.currentBalance,\n        amountPastDue: account.amountPastDue,\n        dateReported: account.dateReported,\n        rateOfInterest: account.rateOfInterest,\n        currencyCode: account.currencyCode,\n      },\n    });\n  });\n});\n\n// Step 4: Return cleaned data for downstream nodes\nreturn cleanedAccounts;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        593
+      ],
+      "id": "1657f572-a9b2-4357-b230-318b83dabe1a",
+      "name": "Clean Credit Report"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Step 1: Extract the raw JSON string from the input\nconst rawText = $input.first().json.result?.content?.[0]?.text || '{}';\n\nlet parsedData;\ntry {\n  // Step 2: Parse the JSON string\n  parsedData = JSON.parse(rawText);\n} catch (error) {\n  throw new Error('Error parsing JSON from raw text: ' + error.message);\n}\n\n// Step 3: Get uanAccounts array\nconst uanAccounts = parsedData.uanAccounts || [];\n\nconst cleanedItems = [];\n\n// Step 4: Iterate over all uanAccounts\nuanAccounts.forEach(account => {\n  const rawDetails = account.rawDetails || {};\n  const estDetails = rawDetails.est_details || [];\n  const overallPfBalance = rawDetails.overall_pf_balance || {};\n\n  // Iterate each establishment in est_details and prepare cleaned record\n  estDetails.forEach(est => {\n    cleanedItems.push({\n      json: {\n        est_name: est.est_name,\n        member_id: est.member_id,\n        office: est.office,\n        doj_epf: est.doj_epf,\n        doe_epf: est.doe_epf,\n        doe_eps: est.doe_eps,\n        pf_net_balance: est.pf_balance?.net_balance || null,\n        employee_credit: est.pf_balance?.employee_share?.credit || null,\n        employee_balance: est.pf_balance?.employee_share?.balance || null,\n        employer_credit: est.pf_balance?.employer_share?.credit || null,\n        employer_balance: est.pf_balance?.employer_share?.balance || null,\n        // Optional: Add overall PF balances at account level for each establishment\n        overall_pension_balance: overallPfBalance.pension_balance || null,\n        overall_current_pf_balance: overallPfBalance.current_pf_balance || null,\n        overall_employee_share_credit: overallPfBalance.employee_share_total?.credit || null,\n        overall_employee_share_balance: overallPfBalance.employee_share_total?.balance || null,\n      }\n    });\n  });\n});\n\nreturn cleanedItems;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        793
+      ],
+      "id": "1544f733-7744-46e5-aaae-550c55cf914d",
+      "name": "Clean EPF Details"
+    },
+    {
+      "parameters": {
+        "numberInputs": 6
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1120,
+        230
+      ],
+      "id": "fca6bede-7985-4916-91c1-d0c93a8ea76f",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\n\nconst prompt = `\nAnalyze the user's complete financial profile below:\n\n${JSON.stringify(data, null, 2)}\n\nProvide the following in your response:\n1. Overall financial health summary.\n2. Emergency fund recommendation (Good / Bad) and reasoning.\n3. Debt and risk assessment.\n4. Actionable steps to improve financial health.\n\nOutput in JSON format:\n{\n  \"summary\": \"...\",\n  \"emergency_fund\": \"...\",\n  \"risk_reasoning\": \"...\",\n  \"action_steps\": [\"...\", \"...\"]\n}\n`;\n\nreturn [\n  {\n    json: {\n      chatInput: {\n        contents: [\n          {\n            role: \"user\",\n            parts: [{ text: prompt }]\n          }\n        ]\n      }\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1340,
+        293
+      ],
+      "id": "fac1fc56-b231-414e-939e-129579f0bd0e",
+      "name": "Prompt"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput.contents[0].parts[0].text }}",
+        "options": {
+          "systemMessage": "You are a financial advisor specializing in emergency fund and risk analysis for Indian professionals.\n\nIMPORTANT: The user has ALREADY provided their complete financial data. DO NOT ask for additional information. Analyze the data immediately and return the results ONLY in strict JSON format as specified below.\n\n## Your Task:\nAnalyze the provided financial snapshot and produce a structured JSON response summarizing the financial health, emergency fund analysis, risk assessment, and surplus allocation.\n\n## Provide the output in this exact JSON structure:\n[\n  {\n    \"context_loaded\": true,\n    \"financial_data\": {\n      \"monthly_expenses\": {\n        \"average\": <number>,\n        \"trend\": \"<string>\",\n        \"volatility\": \"<string>\"\n      },\n      \"income_stability\": {\n        \"predictable_percentage\": <number>,\n        \"variable_sources\": [\"<string>\", \"<string>\"]\n      },\n      \"emergency_fund\": {\n        \"current_amount\": <number>,\n        \"current_coverage_months\": <number>,\n        \"recommended_target\": <number>,\n        \"recommended_months\": <number>\n      },\n      \"risk_factors\": [\"<string>\", \"<string>\", \"<string>\"],\n      \"surplus_analysis\": {\n        \"monthly_surplus\": <number>,\n        \"allocation_recommendation\": \"<string>\"\n      },\n      \"analysis_timestamp\": \"<ISO8601>\",\n      \"last_analysis_quality\": \"<string>\"\n    },\n    \"ready_for_decision\": true\n  }\n]\n\n## RULES:\n- Use realistic assumptions if exact values are missing (e.g., assume monthly income from provided transactions or credit data).\n- All currency amounts must be in INR without formatting (no commas, no ₹ symbol).\n- The response must ONLY include the JSON array above. No text, no markdown, no explanations.\n- Use ISO 8601 format for `analysis_timestamp`.\n\n## Most Important\n- Do NOT include markdown, backticks, or any text outside the JSON.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1560,
+        293
+      ],
+      "id": "f80c4dc8-fb57-4f12-b647-cf2c038291a1",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        620
+      ],
+      "id": "5b087831-7030-4ff6-a6da-f767420ad2ee",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "o4ptGSYx0RQff7QA",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rawOutput = $json[\"output\"];\n\n// Step 1: Remove extra spaces\nlet cleaned = rawOutput.trim();\n\n// Step 2: Remove wrapping quotes if present\nif (cleaned.startsWith('\"') && cleaned.endsWith('\"')) {\n  cleaned = cleaned.slice(1, -1);\n}\n\n// Step 3: Remove escape characters\ncleaned = cleaned.replace(/\\\\\"/g, '\"');\n\n// Step 4: Parse JSON\nlet parsed;\ntry {\n  parsed = JSON.parse(cleaned);\n} catch (error) {\n  throw new Error(\"Failed to parse AI response as JSON: \" + error.message);\n}\n\n// Return parsed JSON as output\nreturn parsed;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1936,
+        293
+      ],
+      "id": "3336a5b1-62de-495e-b9ee-65ed2bfb08cb",
+      "name": "Json"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2160,
+        300
+      ],
+      "id": "8fc0f91f-c5f1-49cd-81c4-042fec8af91d",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch_epf_details",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch bank-transactions",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch_credit_report",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch_stock_transactions",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch_mf_transactions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Cleaned net worth",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch bank-transactions": {
+      "main": [
+        [
+          {
+            "node": "Cleaned bank transaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch_stock_transactions": {
+      "main": [
+        [
+          {
+            "node": "Cleaned Stock Transaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch_mf_transactions": {
+      "main": [
+        [
+          {
+            "node": "Cleaned MF Transaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch_credit_report": {
+      "main": [
+        [
+          {
+            "node": "Clean Credit Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch_epf_details": {
+      "main": [
+        [
+          {
+            "node": "Clean EPF Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cleaned net worth": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cleaned bank transaction": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Cleaned Stock Transaction": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Cleaned MF Transaction": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Clean Credit Report": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Clean EPF Details": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Json",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Json": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7118b4f9-4b2a-4109-9ce1-2bf86b00127a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "56c17dc646cabc4aaa693008849e50eee504ef33ebd3545da9adc2ab175d6822"
+  },
+  "id": "LbjFYoHBQIgDybGZ",
+  "tags": []
+}
